@@ -14,8 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.shortcuts import redirect
+from django.urls import path, re_path, include
+from django.conf.urls import url
+
+from .swagger_settings import schema_view
+
 
 urlpatterns = [
+
+    re_path(
+        '^swagger/$',
+        schema_view.with_ui('swagger', cache_timeout=0),
+        name='swagger-ui'
+    ),
+
     path('admin/', admin.site.urls),
+
+]
+
+urlpatterns = [
+    path('', lambda r: redirect('swagger-ui')),
+    path('api/v1/', include(urlpatterns)),
 ]
