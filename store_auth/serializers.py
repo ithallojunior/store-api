@@ -11,6 +11,20 @@ from django.conf import settings
 class UserSerializer(serializers.ModelSerializer):
     """Serializer to deal with user creation, update, and deletion."""
 
+    def validate_password(self, password):
+        """Validating it to django set policies."""
+
+        # validate the password against existing validators
+        validate_password(
+            password,
+            user=None,
+            password_validators=get_password_validators(
+                getattr(settings, 'AUTH_PASSWORD_VALIDATORS', None)
+            )
+        )
+
+        return password
+
     def create(self, validated_data):
         raw_password = validated_data.pop('password')
         user = User(**validated_data)
