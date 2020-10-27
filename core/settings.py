@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
 
+    # local apps
+    'store_auth',
+
 ]
 
 MIDDLEWARE = [
