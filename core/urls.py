@@ -31,6 +31,9 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
+    # store auth urkls
+    url('auth', include('store_auth.urls'))
+
 ]
 
 urlpatterns = [
