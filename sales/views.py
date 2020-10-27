@@ -15,7 +15,7 @@ class ProductsView(ModelViewSet):
     permission_classes = [ProductsPermission]
     serializer_class = serializers.ProductSerializer
     filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ['name', 'description', 'price']
+    search_fields = ['name', 'description', 'price', ]
     ordering = ['name', '-quantity', '-updated_at']
     ordering_fields = '__all__'
     lookup_field = 'name'
@@ -30,7 +30,7 @@ class OrdersView(mixins.CreateModelMixin,
     queryset = models.Orders.objects.all()
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ['name', 'description', 'price']
+    search_fields = ['name', 'description', 'price', 'status']
     ordering = ['-created_at', 'name', '-quantity']
     ordering_fields = '__all__'
 
@@ -78,3 +78,24 @@ class OrdersView(mixins.CreateModelMixin,
             return Response(None, status=status.HTTP_201_CREATED)
 
         return Response(None, status=status.HTTP_404_NOT_FOUND)
+
+
+class StaffOrdersView(mixins.RetrieveModelMixin,
+                      mixins.ListModelMixin,
+                      mixins.UpdateModelMixin,
+                      GenericViewSet):
+    """This view models orders actions."""
+
+    queryset = models.Orders.objects.all()
+    permission_classes = [permissions.IsAdminUser]
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ['name', 'description', 'price', 'status']
+    ordering = ['-created_at', 'name', '-quantity']
+    ordering_fields = '__all__'
+
+    def get_serializer_class(self):
+
+        if self.action in ['list', 'retrieve']:
+            return serializers.OrdersSerializer
+
+        return serializers.OrdersStaffSerializer

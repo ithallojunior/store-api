@@ -85,3 +85,24 @@ class CompleteOrderSerializer(serializers.ModelSerializer):
             'address': {'required': True},
             'payment_details': {'required': True}
         }
+
+
+class OrdersStaffSerializer(serializers.ModelSerializer):
+    """A serializer for the staff to update product status."""
+
+    def validate_status(self, status):
+        """Limiting status movimentation."""
+
+        previous = self.instance.status
+
+        if previous == models.ON_CHART or status == models.ON_CHART:
+
+            raise ValidationError({
+                'status': ['Staff cannot alter from/to this status.']
+            })
+
+        return status
+
+    class Meta:
+        model = models.Orders
+        fields = ['status']
