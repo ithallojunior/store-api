@@ -22,7 +22,7 @@ class UserView(mixins.CreateModelMixin,
 
 
 class UserAPIView(APIView):
-    """Simply returns basic user info"""
+    """Simply returns basic user info."""
 
     permission_classes = [IsAuthenticated]
 
