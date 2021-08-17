@@ -11,13 +11,16 @@ This little project makes possible for a user to be created, update their detail
 It supposes you already have docker on your computer. So, just clone this repository 
 and run:
 ```
-$ docker-compose up -d
+$ docker-compose up
 
 ```
 And it will be up and running on *localhost:8000* in a beautiful Swagger.
 
-In order to add/alter products you will need a staff user, the easiest way
-to do so is by running the command bellow (while the container is up):
+
+In order to add/alter products you will need a staff user. You can 
+use the predefined superuser *user* and password *password* loaded from
+a fixture. You can also run the command bellow (while the container is up)
+and set up your own user:
 ```
 $ docker exec -it store_seller_app ./manage.py createsuperuser
 
@@ -25,7 +28,7 @@ $ docker exec -it store_seller_app ./manage.py createsuperuser
 
 ## Usage
 
-Well, it is pretty much  look around and do stuff. There is */auth/* that is for loging in
+Well, it is pretty much look around and do stuff. There is */auth/* that is for loging in
 and user related operations (CRUD), */orders/* to make, complete and actual order, and 
 alter it before it is finished.
 
