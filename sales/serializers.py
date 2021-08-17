@@ -37,7 +37,7 @@ class NewOrderSerializer(serializers.ModelSerializer):
     """Makes an order possible."""
 
     def validate(self, data):
-        """Making sure there is enough product."""
+        """Making sure there are enough products."""
 
         quantity = data['quantity']
         product = data['product']
@@ -91,7 +91,7 @@ class OrdersStaffSerializer(serializers.ModelSerializer):
     """A serializer for the staff to update product status."""
 
     def validate_status(self, status):
-        """Limiting status movimentation."""
+        """Limiting status changes."""
 
         previous = self.instance.status
 

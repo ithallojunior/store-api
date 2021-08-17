@@ -36,7 +36,7 @@ class OrdersView(mixins.CreateModelMixin,
 
     def get_queryset(self):
 
-        # queryset just for schema generation metadata to avoid warnings
+        # Queryset just for schema generation metadata to avoid warnings.
         if getattr(self, 'swagger_fake_view', False):
             return self.queryset.none()
 

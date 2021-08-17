@@ -38,11 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # extra dependencies
+    # Extra dependencies.
     'rest_framework',
     'drf_yasg',
 
-    # local apps
+    # Local apps.
     'store_auth',
     'sales',
 

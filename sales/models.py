@@ -4,7 +4,7 @@ from django.db import models
 
 ON_CHART = 'chart'
 ORDERED = 'ordered'
-UNDEFINED = 'undefined'  # yeah, when sh* happens
+UNDEFINED = 'undefined'  # When something unexpected happens.
 SHIPPED = 'shipped'
 FINISHED = 'finished'
 

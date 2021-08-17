@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
     def validate_password(self, password):
         """Validating it to django set policies."""
 
-        # validate the password against existing validators
+        # Validate the password against existing validators.
         validate_password(
             password,
             user=None,
@@ -31,7 +31,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(raw_password)
         user.save()
 
-        # adding an empty field for password after setting it up
+        # Adding an empty field for password after setting it up.
         validated_data['password'] = None
         return validated_data
 
@@ -44,7 +44,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         super().update(instance, validated_data)
 
-        # adding an empty field for password after setting it up
+        # Adding an empty field for password after setting it up.
         validated_data['password'] = None
         return validated_data
 

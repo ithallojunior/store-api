@@ -31,10 +31,10 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    # store auth urls
+    # Store auth urls.
     url('auth', include('store_auth.urls')),
 
-    # store auth urkls
+    # Sales urls.
     url('', include('sales.urls')),
 
 ]
