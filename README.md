@@ -18,7 +18,7 @@ And it will be up and running on *localhost:8000* in a beautiful Swagger.
 
 
 In order to add/alter products you will need a staff user. You can 
-use the predefined superuser *user* and password *password* loaded from
+use the predefined superuser *root* and password *password* loaded from
 a fixture. You can also run the command bellow (while the container is up)
 and set up your own user:
 ```
